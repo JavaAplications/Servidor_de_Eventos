@@ -4,6 +4,7 @@ package Ventanas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -54,7 +55,7 @@ public class ventana_Principal extends JFrame {
 	private void Inicializacion() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 317, 469);
+		setBounds(100, 100, 373, 469);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -68,14 +69,14 @@ public class ventana_Principal extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 271, GroupLayout.PREFERRED_SIZE)
-					.addGap(374))
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 					.addGap(21)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
 					.addGap(26))
 		);
 		panel.setLayout(null);
@@ -99,10 +100,12 @@ public class ventana_Principal extends JFrame {
 		editPuerto.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 79, 213, 225);
+		scrollPane.setBounds(10, 79, 317, 294);
 		panel.add(scrollPane);
 		
 		textAreaConsola = new JTextArea();
+		 DefaultCaret caret = (DefaultCaret)textAreaConsola.getCaret();
+		 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		scrollPane.setViewportView(textAreaConsola);
 		
 				btn_deteneServer.addActionListener(new ActionListener() {
