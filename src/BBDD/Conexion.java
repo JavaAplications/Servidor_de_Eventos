@@ -4,7 +4,7 @@ import java.sql.*;
 
 
 public class Conexion {
-	
+	Connection con;
 public Conexion() {
 		
 	}
@@ -30,7 +30,7 @@ public  Connection Conectar(){
 
 public void InsertarEventos(int IdRadio,int IdAlarma){
 	
-	Connection con=Conectar();
+	con=Conectar();
 	
 		PreparedStatement pst;
 		try {
@@ -54,7 +54,7 @@ public void InsertarEventos(int IdRadio,int IdAlarma){
 
 public void InsertarKeepAlive(int IdRadio){
 	
-	Connection con=Conectar();
+	con=Conectar();
 	
 		PreparedStatement pst;
 		try {
@@ -73,7 +73,7 @@ public void InsertarKeepAlive(int IdRadio){
 public void InsertarRadiobases(String NomRadio,String TelRadio,String LatRadio,String LongRadio,
 		String LocRadio,String ProvRadio,String ContacRadio){
 	
-	Connection con=Conectar();
+	con=Conectar();
 	
 		PreparedStatement pst;
 		try {
@@ -100,7 +100,55 @@ public void InsertarRadiobases(String NomRadio,String TelRadio,String LatRadio,S
 
 }
 
+public String ConsultarNombre(int IdRadiobase)
+{
+	con=Conectar();
+	Statement st;
+	ResultSet rs=null;
+	String NombreRadio = null;
+	try {
+		st=con.createStatement();
+		rs=st.executeQuery("SELECT `NomRadio` FROM `radiobases` WHERE `IdRadios`='"+IdRadiobase+"'");
+		while(rs.next()){
+			NombreRadio=  rs.getString("NomRadio");
+				
+					
+		}
+			
 	
+	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			 NombreRadio="Desconocido";
+	}
+	
+	return NombreRadio;
+}
+	
+public String ConsultarAlarma(int IdAlarma)
+{
+	con=Conectar();
+	Statement st;
+	ResultSet rs=null;
+	String NomAlarmas = null;
+	try {
+		st=con.createStatement();
+		rs=st.executeQuery("SELECT `NomAlarmas` FROM `alarmas` WHERE `IdAlarmas`='"+IdAlarma+"'");
+		while(rs.next()){
+			NomAlarmas=  rs.getString("NomAlarmas");
+				
+					
+		}
+			
+	
+	} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			NomAlarmas="Desconocido";
+	}
+	
+	return NomAlarmas;
+}
 	
 
 }

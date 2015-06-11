@@ -4,6 +4,7 @@ import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.*;
+import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -19,10 +20,11 @@ public class ServidorHilo extends Thread {
     JTextArea TextAreaVent;
     String NombreCliente;
     BufferedReader entrada ;
-  
+  Conexion con;
     PrintWriter salida;
  
     ClaseReadBuffer HiloLeerBuffer;
+    private static final Pattern SPACE = Pattern.compile(" ");
    
     public ServidorHilo(Socket socket,JTextArea TextAreaVent) {
         this.socketclient = socket;
@@ -59,8 +61,23 @@ public class ServidorHilo extends Thread {
 			
 		//	salida.print("ok");
 			 String timeStamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
-		      
-			 TextAreaVent.append(timeStamp+" "+datos+"\n");
+				
+			   con=new Conexion();
+			   con.Conectar();
+			   String[] arr = SPACE.split(datos); // str is the string to be split
+				int IdRadiobase=Integer.parseInt(arr[1]);
+				
+				int IdAlarma=Integer.parseInt(arr[2]);
+				// cuando la alarma es '1' es una keep alive.
+				// caso contrario es una alarma de algun tipo. 
+			   
+			  String Radiobase= con.ConsultarNombre(IdRadiobase);
+			  String Alarma= con.ConsultarAlarma(IdAlarma);
+				  
+			  
+				 
+			 
+			 TextAreaVent.append(timeStamp+"  Radiobase: ' "+Radiobase+" ' : "+Alarma+"\n");
 		
 		     if (datos==null){
 		       	//socketclient.close();
