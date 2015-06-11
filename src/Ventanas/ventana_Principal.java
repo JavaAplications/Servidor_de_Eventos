@@ -20,6 +20,7 @@ import Clases.ClaseServidor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 
 
@@ -55,7 +56,7 @@ public class ventana_Principal extends JFrame {
 	private void Inicializacion() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 373, 469);
+		setBounds(100, 100, 516, 469);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,24 +90,44 @@ public class ventana_Principal extends JFrame {
 		btn_deteneServer.setBounds(20, 45, 106, 23);
 		panel.add(btn_deteneServer);
 		
-		JLabel lblNewLabel = new JLabel("Puerto Alarmas");
-		lblNewLabel.setBounds(154, 15, 83, 14);
+		JLabel lblNewLabel = new JLabel("Puerto");
+		lblNewLabel.setBounds(149, 49, 40, 14);
 		panel.add(lblNewLabel);
 		
 		editPuerto = new JTextField();
-		editPuerto.setBounds(164, 46, 40, 20);
+		editPuerto.setBounds(199, 46, 40, 20);
 		panel.add(editPuerto);
 		editPuerto.setText("9001");
 		editPuerto.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 79, 317, 294);
+		scrollPane.setBounds(10, 79, 460, 294);
 		panel.add(scrollPane);
 		
 		textAreaConsola = new JTextArea();
 		 DefaultCaret caret = (DefaultCaret)textAreaConsola.getCaret();
 		 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		scrollPane.setViewportView(textAreaConsola);
+		
+		JButton btn_Limpiar = new JButton("Limpiar");
+		btn_Limpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				textAreaConsola.setText("");;
+				
+			}
+		});
+		btn_Limpiar.setBounds(381, 11, 89, 57);
+		panel.add(btn_Limpiar);
+		
+		JLabel lblIp = new JLabel("IP");
+		lblIp.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIp.setBounds(143, 15, 46, 14);
+		panel.add(lblIp);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(199, 15, 46, 14);
+		panel.add(lblNewLabel_1);
 		
 				btn_deteneServer.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -154,8 +175,6 @@ public class ventana_Principal extends JFrame {
 		
 		
 	}
-	
-	
 }
 
  
