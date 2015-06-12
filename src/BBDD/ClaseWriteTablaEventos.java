@@ -21,7 +21,7 @@ public class ClaseWriteTablaEventos{
 	public void run(){
 		
 	    con=new Conexion();
-		  con.Conectar();
+		//  con.Conectar();
 		  con.InsertarEventos(Radiobase, Alarma);
 		
 		
