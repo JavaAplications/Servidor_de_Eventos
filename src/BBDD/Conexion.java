@@ -31,13 +31,14 @@ public  Connection Conectar(){
 public void InsertarEventos(int IdRadio,int IdAlarma){
 	
 	con=Conectar();
-	
+
 		PreparedStatement pst;
 		try {
-			pst = con.prepareStatement("INSERT INTO eventos (IdRadios,IdAlarmas) VALUES (?,?)");
+			pst = con.prepareStatement("INSERT INTO eventos (IdRadios,IdAlarmas,Checked) VALUES (?,?,?)");
 		
 			pst.setInt(1,IdRadio);
 			pst.setInt(2,IdAlarma);
+			pst.setBoolean(3,false);
 			
 			pst.execute();
 		} catch (SQLException e) {
