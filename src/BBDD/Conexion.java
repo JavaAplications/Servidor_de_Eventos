@@ -28,18 +28,18 @@ public  Connection Conectar(){
 	
 
 
-public void InsertarEventos(int IdRadio,int IdAlarma){
+public void InsertarEventos(int IdRadio,int IdAlarma,String linkVideo){
 	
 	con=Conectar();
 
 		PreparedStatement pst;
 		try {
-			pst = con.prepareStatement("INSERT INTO eventos (IdRadios,IdAlarmas,Checked) VALUES (?,?,?)");
+			pst = con.prepareStatement("INSERT INTO eventos (IdRadios,IdAlarmas,Checked,linkVideo) VALUES (?,?,?,?)");
 		
 			pst.setInt(1,IdRadio);
 			pst.setInt(2,IdAlarma);
 			pst.setBoolean(3,false);
-			
+			pst.setString(4,linkVideo);
 			pst.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
