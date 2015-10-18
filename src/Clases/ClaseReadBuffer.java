@@ -26,9 +26,14 @@ public class ClaseReadBuffer {
 		
 			
 		String[] arr = SPACE.split(mensaje); // str is the string to be split
+		System.out.println("lonigut arr: "+arr.length);
 		Radiobase=Integer.parseInt(arr[1]);
 		Alarma=Integer.parseInt(arr[2]);
-		linkVideo=arr[3];
+		
+		if(arr.length<4){
+			linkVideo="sin video";
+		}else{
+		linkVideo=arr[3];}
 		// cuando la alarma es '1' es una keep alive.
 		// caso contrario es una alarma de algun tipo.
 
